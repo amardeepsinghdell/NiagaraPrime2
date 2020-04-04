@@ -25,17 +25,17 @@
 <message name="addMovieResponse">
 <part name="parameters" element="tns:addMovieResponse"/>
 </message>
-<message name="deleteMovie">
-<part name="parameters" element="tns:deleteMovie"/>
-</message>
-<message name="deleteMovieResponse">
-<part name="parameters" element="tns:deleteMovieResponse"/>
-</message>
 <message name="updateMovie">
 <part name="parameters" element="tns:updateMovie"/>
 </message>
 <message name="updateMovieResponse">
 <part name="parameters" element="tns:updateMovieResponse"/>
+</message>
+<message name="deleteMovie">
+<part name="parameters" element="tns:deleteMovie"/>
+</message>
+<message name="deleteMovieResponse">
+<part name="parameters" element="tns:deleteMovieResponse"/>
 </message>
 <portType name="MovieStreamService">
 <operation name="viewMovie">
@@ -50,13 +50,13 @@
 <input wsam:Action="http://services.soapservice.streaming/MovieStreamService/addMovieRequest" message="tns:addMovie"/>
 <output wsam:Action="http://services.soapservice.streaming/MovieStreamService/addMovieResponse" message="tns:addMovieResponse"/>
 </operation>
-<operation name="deleteMovie">
-<input wsam:Action="http://services.soapservice.streaming/MovieStreamService/deleteMovieRequest" message="tns:deleteMovie"/>
-<output wsam:Action="http://services.soapservice.streaming/MovieStreamService/deleteMovieResponse" message="tns:deleteMovieResponse"/>
-</operation>
 <operation name="updateMovie">
 <input wsam:Action="http://services.soapservice.streaming/MovieStreamService/updateMovieRequest" message="tns:updateMovie"/>
 <output wsam:Action="http://services.soapservice.streaming/MovieStreamService/updateMovieResponse" message="tns:updateMovieResponse"/>
+</operation>
+<operation name="deleteMovie">
+<input wsam:Action="http://services.soapservice.streaming/MovieStreamService/deleteMovieRequest" message="tns:deleteMovie"/>
+<output wsam:Action="http://services.soapservice.streaming/MovieStreamService/deleteMovieResponse" message="tns:deleteMovieResponse"/>
 </operation>
 </portType>
 <binding name="MovieStreamServicePortBinding" type="tns:MovieStreamService">
@@ -89,7 +89,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="deleteMovie">
+<operation name="updateMovie">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -98,7 +98,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="updateMovie">
+<operation name="deleteMovie">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

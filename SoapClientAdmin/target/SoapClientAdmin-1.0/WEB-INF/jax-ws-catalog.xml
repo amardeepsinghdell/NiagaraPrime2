@@ -2,4 +2,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:39882/SoapService/MovieStreamService?wsdl" uri="wsdl/localhost_39882/SoapService/MovieStreamService.wsdl"/>
     <system systemId="http://localhost:39882/SoapService/MovieStreamService?xsd=1" uri="wsdl/localhost_39882/SoapService/MovieStreamService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/NiagaraPrime-master/MovieStreamService?wsdl" uri="wsdl/localhost_8080/NiagaraPrime-master/MovieStreamService.wsdl"/>
+    <system systemId="http://localhost:8080/NiagaraPrime-master/MovieStreamService?xsd=1" uri="wsdl/localhost_8080/NiagaraPrime-master/MovieStreamService.xsd_1.xsd"/>
 </catalog>

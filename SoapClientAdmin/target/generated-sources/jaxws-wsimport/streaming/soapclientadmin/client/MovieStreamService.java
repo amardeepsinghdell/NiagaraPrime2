@@ -70,21 +70,6 @@ public interface MovieStreamService {
 
     /**
      * 
-     * @param deleteMovie
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "deleteMovie", targetNamespace = "http://services.soapservice.streaming/", className = "streaming.soapclientadmin.client.DeleteMovie")
-    @ResponseWrapper(localName = "deleteMovieResponse", targetNamespace = "http://services.soapservice.streaming/", className = "streaming.soapclientadmin.client.DeleteMovieResponse")
-    @Action(input = "http://services.soapservice.streaming/MovieStreamService/deleteMovieRequest", output = "http://services.soapservice.streaming/MovieStreamService/deleteMovieResponse")
-    public boolean deleteMovie(
-        @WebParam(name = "deleteMovie", targetNamespace = "")
-        BigDecimal deleteMovie);
-
-    /**
-     * 
      * @param updateMovie
      * @return
      *     returns boolean
@@ -97,5 +82,20 @@ public interface MovieStreamService {
     public boolean updateMovie(
         @WebParam(name = "updateMovie", targetNamespace = "")
         Movies updateMovie);
+
+    /**
+     * 
+     * @param deleteMovie
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "deleteMovie", targetNamespace = "http://services.soapservice.streaming/", className = "streaming.soapclientadmin.client.DeleteMovie")
+    @ResponseWrapper(localName = "deleteMovieResponse", targetNamespace = "http://services.soapservice.streaming/", className = "streaming.soapclientadmin.client.DeleteMovieResponse")
+    @Action(input = "http://services.soapservice.streaming/MovieStreamService/deleteMovieRequest", output = "http://services.soapservice.streaming/MovieStreamService/deleteMovieResponse")
+    public boolean deleteMovie(
+        @WebParam(name = "deleteMovie", targetNamespace = "")
+        BigDecimal deleteMovie);
 
 }
