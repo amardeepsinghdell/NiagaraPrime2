@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="theme.css">
+        <link rel="stylesheet" href="theme_1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script>
+            function loadData() {
+                fetch('http://localhost:39882/RestService/resources/movieService/all')
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var moviesDiv = document.createElement('tr');
+                        console.log("Id is: "+data[i].id);
+                        moviesDiv.innerHTML = '<td data-toggle="modal" data-id="' + data[i].id + '" data-target="#myModal">'
+                                + data[i].title + '</td>';
+                        
+                        document.getElementById('movieContainer').appendChild(moviesDiv);
+                    }
+                    ;
+                });
+            }
+            $(document).ready(function () {
+                $('#myModal').on('show.bs.modal', function (e) {
+                    var movId = $(e.relatedTarget).attr('data-id');
+                    console.log("Loading modal"+movId);
+                    fetch('http://localhost:39882/RestService/resources/movieService/all/' + movId)
+                            .then(function (response) {
+                                return response.json();
+                            }).then(function (data) {
+                            console.log(data);
+                        var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(data.thumb)));
+                        var image = document.getElementById('thumbnail');
+                        image.src = 'data:image/jpg;base64,' + base64String;
+                        document.getElementById('movieTitle').innerHTML = data.title;
+                        document.getElementById('movieDesc').innerHTML = "Description : "+ data.description;
+                    });
+                });
+            });
+        </script>
+<!--        <style>
+            html,
+            body {
+                height: 100;
+                margin: 0 auto;
+                background-color: #D3E6D4;
+                color: #1E1E1E;
+            }    
+            .container{
+                border-radius: 25px;
+                background-color:#FEFEFE;
+                background-color: rgba(255,255,255,0.5);
+                padding-bottom: 20px;
+            }
+            .table {
+                border-radius: 5px;
+                width: 50%;
+                margin: 0px auto;
+                float: none;
+            }
+            .table td, .table th {
+                text-align: center;   
+            }
+            #movieTitle{
+                font-weight: bolder;
+            }
+        </style>-->
+    </head>
+    <body onload="loadData();">
+       
+        <div class="container" >
+            <h3 align="center">MOVIES LIBRARY</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">List</th>
+                    </tr>
+                </thead>
+                <tbody id="movieContainer">
+                </tbody>
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">You selected: <span id="movieTitle"></span></h4>
+                        </div>
+                        <div class="modal-body mb-0 p-0">
+                            <div class="card" style="margin:0 auto">
+                                <img class="card-img-top"  id="thumbnail" alt="Card image" style="width:100%">
+                                <div class="card-body">
+                                    <h4 class="card-title" ></h4>
+                                    <p class="card-text" id="movieDesc"></p>
+                                    <a href="#" class="btn btn-primary">Watch Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
